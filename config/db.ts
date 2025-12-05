@@ -5,7 +5,6 @@ configDotenv();
 const CONNECTIONSTRING = process.env.CONNECTIONSTRING as string;
 
 export const connectDb = async () => {
-  console.log("wetin sup");
   try {
     await mongoose.connect(CONNECTIONSTRING);
     console.log("MongoDB connected");

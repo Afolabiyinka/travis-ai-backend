@@ -1,14 +1,12 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
+import { RegisterPayload } from "../types/auth";
 
-const userSchema = new Schema({
-  username: {
-    type: String,
-  },
-  firstname: {
+const userSchema = new Schema<RegisterPayload>({
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -30,6 +28,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = model("User", userSchema);
+const User = model<RegisterPayload>("User", userSchema);
 
 export default User;
