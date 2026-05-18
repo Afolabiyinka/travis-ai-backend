@@ -19,7 +19,6 @@ app.use(helmet());
 app.use(limiter);
 app.use(express.json());
 app.use(cookieParser());
-app.use(errorHandler)
 
 
 //CORS setup
@@ -45,19 +44,14 @@ async function start() {
   app.use("/api/me", AccountRouter);
   app.use(errorHandler)
 
-
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV}`);
-  });
-
-
   //Checking the database connection
   app.listen(PORT, async () => {
     try {
       await prisma.$connect();
+      console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV}`);
       console.log("Prisma DB connected connected");
     } catch (error) {
-      console.log("❌ Prisma failed");
+      console.log("Prisma Db connection failed");
       console.error(error);
     }
   });
