@@ -17,8 +17,8 @@ const login: RequestHandler = async (req, res, next) => {
 
 const signup: RequestHandler = async (req, res, next) => {
     try {
-        const { accesstoken } = await signUpService(req.body as SignupPayload)
-        res.cookie("token", accesstoken, cookieOptions);
+        const { token } = await signUpService(req.body as SignupPayload)
+        res.cookie("token", token, cookieOptions);
         res.status(200).json({ message: "Account created successfully" });
     } catch (err) {
         next(err)
@@ -27,7 +27,7 @@ const signup: RequestHandler = async (req, res, next) => {
 
 const logout: RequestHandler = async (req, res) => {
     res.clearCookie("token", cookieOptions);
-    res.clearCookie("accesstoken", cookieOptions);
+    res.clearCookie("token", cookieOptions);
     res.json({ message: "Logged out" });
 };
 

@@ -4,8 +4,9 @@ import { LoginPayload, SignupPayload } from "./auth.types";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "@/shared/libs/prisma";
+import { generateToken } from "@/shared/utils/generateToken";
 
-const jwtSecret = process.env.JWT_SECRET!;
+export const jwtSecret = process.env.JWT_SECRET!;
 
 
 const loginService = async (payload: LoginPayload) => {
@@ -25,15 +26,7 @@ const loginService = async (payload: LoginPayload) => {
         throw new ApiError(404, "Incorrect Password", "AUTH_INVALID_CREDENTIALS",
         )
     }
-    const token = jwt.sign(
-        {
-            id: user.id,
-        },
-        jwtSecret,
-        {
-            expiresIn: "7d",
-        }
-    );
+    const token = generateToken(user.id)
 
     return { token }
 
@@ -61,17 +54,9 @@ const signUpService = async (payload: SignupPayload) => {
     });
 
     //Creating a jwt token with the user id
-    const accesstoken = jwt.sign(
-        {
-            id: user.id,
-        },
-        jwtSecret,
-        {
-            expiresIn: "7d",
-        }
-    );
+    const token = generateToken(user.id)
 
-    return { accesstoken }
+    return { token }
 }
 
 export { loginService, signUpService }
