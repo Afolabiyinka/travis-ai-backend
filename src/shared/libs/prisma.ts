@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import pkg from "@prisma/client";
+const { PrismaClient } = pkg;
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 
@@ -7,7 +8,7 @@ const adapter = new PrismaPg(pool);
 
 const prisma = new PrismaClient({
     adapter,
-    log: ['error', 'warn',],
+    log: ['query', 'error', 'warn'],
 });
 
 export default prisma;
