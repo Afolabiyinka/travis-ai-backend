@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import { NextFunction, RequestHandler, Response } from "express";
 import jwt from "jsonwebtoken";
 import { DecodedUser } from "@/modules/auth/auth.types";
 
@@ -36,6 +36,7 @@ export const authMiddleware: RequestHandler = (
     if (err instanceof jwt.TokenExpiredError) {
       return res.status(401).json({ message: "Token expired" });
     }
+
     return res.status(401).json({ message: "Invalid token" });
   }
 };
