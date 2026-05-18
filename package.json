@@ -5,19 +5,24 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "dev": "tsx watch index.ts",
+    "dev": "tsup src/index.ts --watch --onSuccess \"node dist/index.mjs\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsup"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.8.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.0",
@@ -27,14 +32,18 @@
     "nodemon": "^3.1.11",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.8"
+    "sequelize": "^6.37.8",
+    "tsup": "^8.5.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.10.1",
+    "@types/pg": "^8.20.0",
     "prisma": "^7.8.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
