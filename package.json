@@ -4,7 +4,6 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "nodemon index.js",
     "dev": "tsup src/index.ts --watch --onSuccess \"node dist/index.mjs\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup"
