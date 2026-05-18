@@ -24,7 +24,7 @@ app.use(cookieParser());
 //CORS setup
 app.use(
   cors({
-    origin: ["https://travis-ai.vercel.app", "http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://travis-ai.vercel.app",],
     credentials: true,
   })
 );
