@@ -32,11 +32,8 @@ app.use(
 
 
 app.get("/", (req, res) => {
-  res.send(
-    `<h1> View the api docs <a href="https://79bkunfbq2.apidog.io/">Here</a></h1>`
-  );
+  res.redirect("https://79bkunfbq2.apidog.io/");
 });
-
 
 async function start() {
 
